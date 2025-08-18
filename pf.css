@@ -385,12 +385,31 @@ body {
         }
     
         .contact-sec{
-            background-color: #092c30;
+            position: relative;
+            background: radial-gradient(80% 100% at 50% 0%, rgba(0, 210, 255, 0.06), transparent 60%),
+                        linear-gradient(180deg, #0a1a2b 0%, #092c30 60%, #081d24 100%);
             margin-top: 5%;
+            padding: 60px 16px;
+            overflow: hidden;
+        }
+        .contact-sec::before{
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            top: -180px;
+            right: -180px;
+            background: radial-gradient(closest-side, rgba(58, 71, 213, 0.25), rgba(58, 71, 213, 0.0));
+            filter: blur(6px);
+            pointer-events: none;
         }
 
         .contact-body{
-            justify-content: space-around;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
         }
 
         .sm-link{
@@ -404,7 +423,7 @@ body {
             color: #ffffff;
             color: rgb(240, 240, 59);
             text-align: center;
-            padding-top: 5%;
+            padding-top: 0;
             font-size: 250%;
             margin-bottom: 5%;
             font-weight: bold;
@@ -465,38 +484,159 @@ body {
         }
 
         .contact-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    width: 280px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color .3s ease;
 }
 
 .contact-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(163, 211, 255, 0.35);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
 }
 
 .contact-card h2 {
     color: #ffffff !important;
     color: #ffffff;
     color: gold;
-    margin-bottom: 1rem;
+    margin-bottom: .75rem;
 }
 
+/* Base link style inside contact cards (readable for phone/email text links) */
 .contact-card a {
     display: inline-block;
     color: #eaeaea;
-    font-size: 1.4rem;
-    margin: 0 0.6rem;
-    transition: transform 0.3s ease, color 0.3s ease;
+    font-size: 1.05rem;
+    margin: 0 .35rem;
+    text-decoration: none;
+    text-underline-offset: 3px;
+    transition: color 0.25s ease;
 }
 
-.contact-card a:hover {
+/* Neutralize global translate hover for links inside cards */
+.contact-card a:hover{ transform: none; }
+
+/* Icon-only buttons (e.g., social icons) use .icon-btn class */
+.contact-card a.icon-btn{
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    transition: transform 0.25s ease, color 0.25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+}
+
+/* Hover only for icon buttons */
+.contact-card a.icon-btn:hover {
     color: #00d2ff;
-    transform: scale(1.25);
+    background: rgba(163,211,255,0.08);
+    border-color: rgba(163,211,255,0.45);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0, 210, 255, 0.18);
+}
+
+/* Phone icon next to number: smaller and aligned */
+.contact-card .fa-phone{
+    font-size: 0.95rem;
+    opacity: .9;
+    margin-right: 8px;
+}
+
+/* Prevent phone number links (WhatsApp) from wrapping awkwardly */
+.contact-card a[href^="https://wa.link/"]{
+    white-space: nowrap;
+}
+
+/* Better layout for icon rows in text-centered cards (e.g., Social Media) */
+.contact-card.text-center h2 + a.icon-btn{
+    margin-top: .5rem;
+}
+.contact-card.text-center a.icon-btn{
+    margin: .25rem .35rem;
+}
+
+/* Links with icon + text behave as inline-flex and underline on hover */
+.contact-card a:not(.icon-btn) i{ margin-right: 6px; }
+.contact-card a:not(.icon-btn){
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    width: auto !important;
+    height: auto !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    line-height: 1.3;
+    vertical-align: middle;
+}
+.contact-card a:not(.icon-btn):hover{
+    color: #cfe8ff;
+    text-decoration: underline;
+}
+
+/* Add spacing between consecutive phone links inside a contact card */
+.contact-card h2 + a:not(.icon-btn){
+    margin-top: .35rem;
+    display: inline-flex;
+}
+.contact-card h2 + a:not(.icon-btn) + a:not(.icon-btn){
+    margin-left: .75rem;
+}
+
+/* Extra safety: remove any borders/background from phone icon itself */
+.contact-card a:not(.icon-btn) i.fa-phone{
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Dedicated styling for phone links */
+.contact-card a.contact-phone{
+    display: block !important;
+    margin: .35rem auto 0 auto;
+    text-align: center;
+    font-weight: 500;
+}
+.contact-card a.contact-phone + a.contact-phone{ margin-top: .25rem; }
+
+@media (max-width: 576px){
+    .contact-card{ width: 100%; }
+    .contact-body{ padding: 0 6px; }
+    .contact-card a.icon-btn{ width: 40px; height: 40px; font-size: 1rem; }
+    .contact-card.text-center a.icon-btn{ margin: .2rem .25rem; }
+}
+
+/* Responsive tweaks for contact section */
+@media (max-width: 992px){
+  .contact-sec h1{ font-size: 2rem; }
+  .contact-card{ width: calc(50% - .75rem); }
+  .contact-card a.icon-btn{ width: 42px; height: 42px; }
+}
+
+@media (max-width: 768px){
+  .contact-sec{ padding: 48px 12px; }
+  .contact-card{ width: 100%; }
+  .contact-body{ gap: 1rem; }
+  .contact-card a.icon-btn{ width: 40px; height: 40px; }
+}
+
+@media (max-width: 420px){
+  .contact-sec h1{ font-size: 1.6rem; }
+  /* Slightly smaller icon circles on tiny screens */
+  .contact-card a.icon-btn{ width: 36px; height: 36px; font-size: 0.95rem; }
+  .contact-form .btn.btn-primary{ padding: .6rem .9rem; }
+  .contact-form .form-control{ padding: .6rem .8rem; }
 }
 
 /* Fade-in-up animation */
