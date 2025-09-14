@@ -403,13 +403,31 @@ body {
             filter: blur(6px);
             pointer-events: none;
         }
+        /* extra soft gradient accent at bottom-left */
+        .contact-sec::after{
+            content: "";
+            position: absolute;
+            left: -220px;
+            bottom: -220px;
+            width: 560px;
+            height: 560px;
+            background: radial-gradient(closest-side, rgba(0,210,255,0.18), rgba(0,210,255,0));
+            filter: blur(10px);
+            pointer-events: none;
+        }
 
         .contact-body{
             justify-content: center;
             gap: 1.5rem;
-            max-width: 1100px;
+            max-width: 1240px;
             margin: 0 auto;
             flex-wrap: wrap;
+        }
+        /* modern responsive grid layout for contact cards */
+        .contact-sec .contact-body{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            align-items: stretch;
         }
 
         .sm-link{
@@ -429,6 +447,16 @@ body {
             font-weight: bold;
              white-space: nowrap;
             animation: typing 3s infinite;
+        }
+        /* gradient underline accent for heading */
+        .contact-sec h1::after{
+            content: "";
+            display: block;
+            width: 72px;
+            height: 3px;
+            margin: 12px auto 0;
+            background: linear-gradient(90deg, #00d2ff, #3a47d5);
+            border-radius: 2px;
         }
         .sm-link h2{
             color: white;
@@ -484,20 +512,41 @@ body {
         }
 
         .contact-card {
+    position: relative;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-    width: 320px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color .3s ease;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color .3s ease, background .3s ease;
+}
+/* subtle gradient border ring using mask (keeps interior clean) */
+.contact-card::before{
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: 20px;
+    background: linear-gradient(140deg, rgba(163,211,255,0.55), rgba(58,71,213,0.35));
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: .55;
+    pointer-events: none;
 }
 
 .contact-card:hover {
     transform: translateY(-8px) scale(1.02);
     border-color: rgba(163, 211, 255, 0.35);
+    background: rgba(255,255,255,0.08);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
 }
+/* brighten border ring on hover */
+.contact-card:hover::before{ opacity: .9; }
 
 .contact-card h2 {
     color: #ffffff !important;
@@ -583,6 +632,19 @@ body {
     text-decoration: underline;
 }
 
+/* refine form field states */
+.contact-form .form-control:hover{
+    background: rgba(255,255,255,0.10);
+}
+.contact-form .form-control.is-invalid{
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255,107,107,0.15);
+}
+.contact-form .form-control.is-valid{
+    border-color: #59d390;
+    box-shadow: 0 0 0 3px rgba(89,211,144,0.14);
+}
+
 /* Add spacing between consecutive phone links inside a contact card */
 .contact-card h2 + a:not(.icon-btn){
     margin-top: .35rem;
@@ -620,8 +682,18 @@ body {
 /* Responsive tweaks for contact section */
 @media (max-width: 992px){
   .contact-sec h1{ font-size: 2rem; }
-  .contact-card{ width: calc(50% - .75rem); }
+  .contact-card{ width: 100%; }
   .contact-card a.icon-btn{ width: 42px; height: 42px; }
+}
+
+/* Laptop and larger: ensure a denser 3-column grid */
+@media (min-width: 992px){
+  .contact-sec .contact-body{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1400px){
+  .contact-body{ max-width: 1320px; }
 }
 
 @media (max-width: 768px){
