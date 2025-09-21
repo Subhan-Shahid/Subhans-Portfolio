@@ -158,22 +158,9 @@ body {
             text-align: center;
         }
 
-        #skill-vid {
-    width: 60%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    mix-blend-mode: lighten;
-}
+        
 
 @media (max-width: 576px) {
-    #skill-vid {
-        width: max-content;
-        max-width: 100%;
-        /* margin-left: -55%; */
-        overflow: hidden;
-    }
     #abt-vid{
         width: 100%;
         margin-top: 8%;
@@ -181,6 +168,29 @@ body {
     }
     .container{
         flex-direction: column;
+    }
+    /* Skills section mobile refinements */
+    .skills h2{
+        font-size: 1.8rem;
+        white-space: normal; /* allow wrapping on small screens */
+        animation: none;     /* avoid width-based typing effect on mobile */
+        margin-bottom: 1.5rem;
+    }
+    .skills .skills-grid{
+        gap: 1.25rem; /* a touch more breathing room on mobile */
+    }
+    .skill-card{
+        padding: 1rem; /* tighten card padding for small screens */
+    }
+    .skill-card .card-body i{
+        font-size: 1.6rem; /* slightly smaller icons in cards */
+    }
+    .skill-card .card-body h5{
+        font-size: 1.05rem;
+        margin-bottom: .35rem;
+    }
+    .skill-card .card-body p{
+        font-size: .95rem;
     }
 }
 
@@ -199,13 +209,29 @@ body {
         }
 
 
-        .gap {
-            gap: 8%;
+        /* New responsive grid for skills */
+        .skills .skills-grid{
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+        }
+        @media (min-width: 576px){
+            .skills .skills-grid{
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.25rem;
+            }
+        }
+        @media (min-width: 992px){
+            .skills .skills-grid{
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1.5rem;
+            }
         }
         
         .skill-card {
     position: relative;
-    margin: 3%;
+    margin: 0; /* let grid manage spacing */
     padding: 1.25rem 1rem;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.10);
@@ -214,6 +240,7 @@ body {
     box-shadow: 0 6px 16px rgba(0,0,0,0.28);
     overflow: hidden;
     transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    height: 100%;
 }
 /* Override Bootstrap card/bg utilities when used together */
 .skill-card.card,
@@ -315,14 +342,7 @@ body {
             font-weight: bold;
         }
 
-        #project-vid{
-            width: 40%;
-            mix-blend-mode: lighten;
-            display: block;
-            margin: auto;
-            padding-bottom: 5%;
-
-        }
+        /* header video removed from projects; styles cleaned */
 
         .projects-sec a{
             font-weight: bold;
@@ -356,11 +376,7 @@ body {
             width: 15%;
         }
 
-        #hub-vid{
-            width: 100%;
-            mix-blend-mode: lighten;
-            display: inline;
-        }
+        /* project media switched to icons */
 
         .skillhub-card{
             text-align: center;
@@ -369,20 +385,12 @@ body {
         .game-card{
             text-align: center;
         }
-        #game-vid{
-            width: 100%;
-            mix-blend-mode: lighten;
-            display: inline;
-        }
+        
 
         .stopwatch-card{
             text-align: center;
         }
-        #stop-vid{
-             width: 100%;
-            mix-blend-mode: lighten;
-            display: inline;
-        }
+        
     
         .contact-sec{
             position: relative;
@@ -505,10 +513,33 @@ body {
             margin-bottom: 15%;
         }
 
-        #ai-vid{
-            width: 100%;
-            mix-blend-mode: lighten;
-            display: inline;
+        
+        /* Modern animated project icons */
+        .projects-sec .project-icon{
+            font-size: 4rem; /* ~64px */
+            line-height: 1;
+            color: #cfe8ff;
+            text-shadow: 0 6px 18px rgba(0,210,255,0.22);
+            display: inline-block;
+            transform-origin: center;
+            animation: floatY 4s ease-in-out infinite;
+            transition: transform .25s ease, color .25s ease, text-shadow .25s ease;
+            margin-bottom: 0.5rem; /* space between icon and title */
+        }
+        .projects-sec .project-icon:hover{
+            transform: translateY(-4px) scale(1.06);
+            color: #00d2ff;
+            text-shadow: 0 10px 24px rgba(0,210,255,0.35);
+        }
+        .projects-sec .skillhub-card .project-icon{ color: #ffd166; }
+        .projects-sec .ai-card .project-icon{ color: #80ed99; }
+        .projects-sec .game-card .project-icon{ color: #9bbcff; }
+        .projects-sec .stopwatch-card .project-icon{ color: #f8b4b4; }
+
+        @keyframes floatY {
+            0%   { transform: translateY(0); }
+            50%  { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
         }
 
         .contact-card {
@@ -733,7 +764,7 @@ body {
     display: flex !important;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 6rem; /* increased vertical spacing between cards */
 }
 #project-sec .projects-card{
     width: 100%;
