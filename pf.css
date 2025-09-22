@@ -1,24 +1,77 @@
+        .navbar .nav-link.active{
+            color: var(--accent);
+        }
+
+/* Skip to content link (visible on focus) */
+.skip-link{
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: #111827;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top .2s ease;
+  z-index: 1000;
+}
+.skip-link:focus{ top: 8px; }
+
+/* Smooth scrolling, with reduced motion fallback */
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+}
+/* Offset anchor scrolling to account for fixed navbar height */
+html{ scroll-padding-top: var(--nav-h); }
+:root{
+  /* brand & accents */
+  --accent: #00d2ff;
+  --accent-2: #3a47d5;
+  --brand-gold: gold;
+  /* text */
+  --text: #ffffff;
+  --text-muted: #eaeaea;
+  --slate-200: #e5e7eb;
+  --slate-300: #cbd5e1;
+  /* surfaces */
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  /* icons */
+  --icon-default: #cfe8ff;
+  /* buttons */
+  --btn-primary-start: #2a74ff;
+  --btn-primary-end: #1e58c7;
+  --nav-h: 64px;
+}
+
 body {
             margin: 0;
             font-family: Arial, sans-serif;
-            color: white;
+            color: var(--text);
+            padding-top: var(--nav-h);
         }
 
         .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     background: rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             justify-content: space-between;
             padding: 1rem 2rem;
             /* background-color: #1a2330; */
+            z-index: 9999;
         }
 
 
         .navbar a {
-            color: white;
+            color: var(--text);
             margin: 0 1rem;
             /* margin-top: 5%; */
             text-decoration: none;
@@ -27,12 +80,15 @@ body {
         }
 
         .navbar.scrolled {
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.35); /* stronger tint for readability */
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .navbar a:hover {
-            color: #00d2ff;
+            color: var(--accent);
             transform: scale(1.1);
         }
 
@@ -81,7 +137,7 @@ body {
             bottom: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(135deg, #00d2ff 0%, #3a47d5 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
             transition: width .3s ease;
         }
 
@@ -103,7 +159,7 @@ body {
         }
 
         .text::after {
-            color: #f39c12;
+            color: var(--brand-gold);
             content: "developer";
             display: inline-block;
             animation: changeText 6s infinite;
@@ -134,7 +190,7 @@ body {
         .title {
             font-size: 2rem;
             font-weight: bold;
-            color: white;
+            color: var(--text);
         }
 
         .subtitle {
@@ -144,7 +200,7 @@ body {
 
         .about-btn {
             background-color: transparent;
-            color: white;
+            color: var(--text);
             border: 1px solid white;
             padding: 0.5rem 1rem;
             cursor: pointer;
@@ -195,7 +251,7 @@ body {
 }
 
         .skills h2 {
-            color: white;
+            color: var(--text);
             margin-bottom: 8%;
             font-size: 250%;
             white-space: nowrap;
@@ -272,12 +328,12 @@ body {
 
         /* icon treatment */
         .skill-card i {
-            color: #cbd5e1; /* slate-300 */
+            color: var(--slate-300); /* slate-300 */
             transition: transform .2s ease, color .2s ease, opacity .2s ease;
         }
         .skill-card:hover i {
             transform: translateY(-2px);
-            color: #e5e7eb; /* slate-200 */
+            color: var(--slate-200); /* slate-200 */
             opacity: 0.95;
         }
 
@@ -311,7 +367,7 @@ body {
         }
 
         .card-body h5,p{
-            color: white;
+            color: var(--text);
         }
         .card-body i{
              color: skyblue;
@@ -332,7 +388,7 @@ body {
 
         .projects-sec h2{
             color: #ffffff !important;
-            color: goldenrod;
+            color: var(--brand-gold);
             font-size: 250%;
             margin-top: 7%;
             /* margin-bottom: 10%; */
@@ -348,7 +404,7 @@ body {
             font-weight: bold;
             text-decoration: none;
             font-size: 80%;
-            color: white;
+            color: var(--text);
             transition: all .3s ease;
             /* flex: wrap; */
             /* margin: auto; */
@@ -373,7 +429,6 @@ body {
 
         .projects-card{
             margin: auto;
-            width: 15%;
         }
 
         /* project media switched to icons */
@@ -467,12 +522,12 @@ body {
             border-radius: 2px;
         }
         .sm-link h2{
-            color: white;
+            color: var(--text);
             margin-bottom: 15%;
         }
 
         .sm-link a{
-            color: white;
+            color: var(--text);
             text-decoration: none;
             transition: transform 0.3s ease;
             display: inline-block;
@@ -493,7 +548,7 @@ body {
         }
 
         .cell-num a{
-            color: white;
+            color: var(--text);
             text-decoration: none;
             transition: transform 0.3s ease;
             display: inline-block;
@@ -509,7 +564,7 @@ body {
         }
 
         .cell-num h2{
-            color: white;
+            color: var(--text);
             margin-bottom: 15%;
         }
 
@@ -518,7 +573,7 @@ body {
         .projects-sec .project-icon{
             font-size: 4rem; /* ~64px */
             line-height: 1;
-            color: #cfe8ff;
+            color: var(--icon-default);
             text-shadow: 0 6px 18px rgba(0,210,255,0.22);
             display: inline-block;
             transform-origin: center;
@@ -528,7 +583,7 @@ body {
         }
         .projects-sec .project-icon:hover{
             transform: translateY(-4px) scale(1.06);
-            color: #00d2ff;
+            color: var(--accent);
             text-shadow: 0 10px 24px rgba(0,210,255,0.35);
         }
         .projects-sec .skillhub-card .project-icon{ color: #ffd166; }
@@ -582,14 +637,14 @@ body {
 .contact-card h2 {
     color: #ffffff !important;
     color: #ffffff;
-    color: gold;
+    color: var(--brand-gold);
     margin-bottom: .75rem;
 }
 
 /* Base link style inside contact cards (readable for phone/email text links) */
 .contact-card a {
     display: inline-block;
-    color: #eaeaea;
+    color: var(--text-muted);
     font-size: 1.05rem;
     margin: 0 .35rem;
     text-decoration: none;
@@ -759,17 +814,7 @@ body {
     color:#eaf1f8;
     font-weight:500;
 }
-/* Stack My Projects items in a single column */
-#project-sec .projects-body{
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    gap: 6rem; /* increased vertical spacing between cards */
-}
-#project-sec .projects-card{
-    width: 100%;
-    max-width: 720px;
-}
+/* Responsive Projects: rely on Bootstrap grid; no forced single column */
 .contact-form .form-control{
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.15);
@@ -788,7 +833,7 @@ body {
 }
 .contact-form .btn.btn-primary{
     border: 1px solid rgba(163,211,255,0.4);
-    background: linear-gradient(180deg, #2a74ff 0%, #1e58c7 100%);
+    background: linear-gradient(180deg, var(--btn-primary-start) 0%, var(--btn-primary-end) 100%);
     color: #fff;
     border-radius: 12px;
     padding: .7rem 1rem;
@@ -801,4 +846,10 @@ body {
 .contact-form .btn.btn-primary:disabled{
     opacity: .7;
     cursor: not-allowed;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .projects-sec .project-icon{ animation: none; }
+  .skill-card, .projects-card, .contact-card{ transition: none !important; }
 }

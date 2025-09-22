@@ -147,8 +147,49 @@ function setupNavbarScroll(){
     });
 }
 
+// Keep CSS variable --nav-h in sync with actual navbar height (for fixed positioning)
+function setupNavbarHeightVar(){
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    const root = document.documentElement;
+
+    const update = () => {
+        // Use offsetHeight to capture current height (varies on mobile when collapsed/expanded)
+        const h = navbar.offsetHeight;
+        if (h > 0){
+            root.style.setProperty('--nav-h', h + 'px');
+        }
+    };
+
+    // Initial update after layout
+    if (document.readyState === 'complete') {
+        update();
+    } else {
+        window.addEventListener('load', update, { once: true });
+    }
+
+    // Update on resize
+    window.addEventListener('resize', () => {
+        // Use rAF to wait for layout
+        requestAnimationFrame(update);
+    });
+
+    // Update when Bootstrap collapse opens/closes
+    const collapse = document.getElementById('mainNavbar');
+    if (collapse){
+        ['shown.bs.collapse','hidden.bs.collapse'].forEach(evt => {
+            collapse.addEventListener(evt, () => {
+                requestAnimationFrame(update);
+            });
+        });
+    }
+}
+
 // Anime.js page-load animations
 function animeInit(){
+    // Respect reduced motion
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
     if (typeof window.anime === 'undefined') return; // graceful fallback
 
     // navbar + title stagger
@@ -176,10 +217,11 @@ function animeInit(){
 
 // IntersectionObserver + anime.js reveal
 function setupRevealAnimations(){
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const useAnime = typeof window.anime !== 'undefined';
 
     const playCardAnimation = (el) => {
-        if (!useAnime) {
+        if (prefersReduced || !useAnime) {
             // Fallback: ensure element becomes visible even without anime.js
             el.classList.add('visible');
             el.style.opacity = '1';
@@ -207,9 +249,83 @@ function setupRevealAnimations(){
 
     document.querySelectorAll('.skill-card, .projects-card, .contact-card').forEach(el => {
         // set initial state to ensure visible effect
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(16px)';
+        if (!prefersReduced){
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+        }
         observer.observe(el);
+    });
+}
+
+// Active nav highlighting based on section visibility
+function setupActiveNavObserver(){
+    const sectionIds = ['home','about','skills','project-sec','contact-sec'];
+    const links = Array.from(document.querySelectorAll('#navbar .nav-link'));
+    const linkMap = new Map();
+    links.forEach(a => {
+        const hash = (a.getAttribute('href') || '').trim();
+        if (hash && hash.startsWith('#')){
+            linkMap.set(hash.slice(1), a);
+        }
+    });
+
+    const setActive = (id) => {
+        links.forEach(a => a.classList.remove('active'));
+        const target = linkMap.get(id);
+        if (target) target.classList.add('active');
+    };
+
+    // Precompute section elements
+    const sections = sectionIds
+        .map(id => ({ id, el: document.getElementById(id) }))
+        .filter(s => !!s.el);
+
+    // Compute active based on section top crossing the navbar, with robust fallbacks
+    const computeAndSetActive = () => {
+        const navHVar = getComputedStyle(document.documentElement).getPropertyValue('--nav-h').trim();
+        const navH = parseInt(navHVar) || 0;
+        const crossY = navH + 1; // just below the fixed navbar
+
+        // First, prefer the last section whose top is above the navbar edge
+        let candidate = null;
+        sections.forEach(({ id, el }) => {
+            const top = el.getBoundingClientRect().top;
+            if (top <= crossY) {
+                candidate = id; // keep updating to get the last one passed
+            }
+        });
+
+        // If none have crossed yet, pick the very first section
+        if (!candidate && sections.length) {
+            candidate = sections[0].id;
+        }
+
+        // Special-case: near page bottom, ensure last section becomes active
+        const nearBottom = (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 2);
+        if (nearBottom && sections.length) {
+            candidate = sections[sections.length - 1].id;
+        }
+
+        if (candidate) setActive(candidate);
+    };
+
+    // Initial highlight (hash wins, else compute)
+    const initialHash = (location.hash || '').replace('#','');
+    if (initialHash && linkMap.has(initialHash)) setActive(initialHash);
+    else computeAndSetActive();
+
+    // Update on scroll/resize
+    window.addEventListener('scroll', computeAndSetActive, { passive: true });
+    window.addEventListener('resize', computeAndSetActive);
+
+    // Sync when user clicks nav links (preemptively set active)
+    links.forEach(a => {
+        a.addEventListener('click', () => {
+            const href = a.getAttribute('href') || '';
+            if (href.startsWith('#')){
+                setActive(href.slice(1));
+            }
+        });
     });
 }
 
@@ -218,13 +334,28 @@ function init(){
     setupDetailToggles();
     setupContactFormUX();
     setupNavbarScroll();
+    setupNavbarHeightVar();
+    setupActiveNavObserver();
     // Pre-state for load animations to be noticeable
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const titleEl = document.querySelector('.title');
-    if (titleEl) { titleEl.style.opacity = '0'; }
-    document.querySelectorAll('#navbar .nav-link').forEach(a => a.style.opacity = '0');
+    if (!prefersReduced && titleEl) { titleEl.style.opacity = '0'; }
+    if (!prefersReduced) {
+        document.querySelectorAll('#navbar .nav-link').forEach(a => a.style.opacity = '0');
+    }
 
     animeInit();
     setupRevealAnimations();
+
+    // Initialize AOS animations after page load (moved from inline script)
+    if (typeof window.AOS !== 'undefined'){
+        const disableAOS = () => (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        window.AOS.init({
+            once: true,
+            duration: 800,
+            disable: disableAOS
+        });
+    }
 }
 
 if (document.readyState === 'loading'){

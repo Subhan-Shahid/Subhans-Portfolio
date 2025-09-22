@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subhan's Portfolio</title>
+    <meta name="description" content="Portfolio of Subhan Shahid — Front‑end Web Developer skilled in HTML, CSS, Bootstrap, and JavaScript. Explore projects, skills, and contact details." />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- AOS animation library -->
@@ -17,20 +18,21 @@
     </style>
 </head>
 <body style="background-color: #1d2b3f;">
+<a href="#main" class="skip-link">Skip to content</a>
 <header>
     <nav id="navbar" class="navbar navbar-expand-lg shadow">
         <div class="container-fluid">
             <div class="social-link d-flex">
-                <a href="https://www.linkedin.com/in/subhan-shahid-178672344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/subhaaanx?igsh=ZDJ4bHV4bXgwb3ht&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://subhanshshaid1920@gmail.com/"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/subhan-shahid-178672344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/subhaaanx?igsh=ZDJ4bHV4bXgwb3ht&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:subhanshahid1920@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
             <button class="navbar-toggler ms-auto collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
              <div class="burger"><span></span><span></span><span></span></div></button>
             <div class="collapse navbar-collapse menu" id="mainNavbar">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#project-sec">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact-sec">Contact</a></li>
@@ -40,16 +42,23 @@
     </nav>
 </header>
 
-    <div class="container">
-        <div class="content ">
-            <div class="title">Subhan Shahid,  I'm a <span class="text"></span></div>
-            <div>
-            <video id="abt-vid" autoplay muted loop playsinline src="abt-vid.mp4"></video>
+<main id="main" tabindex="-1">
+
+    <section id="home">
+        <div class="container">
+            <div class="content ">
+                <h1 class="title">Subhan Shahid,  I'm a <span class="text"></span></h1>
+                <div>
+                <video id="abt-vid" autoplay muted loop playsinline preload="metadata" poster="poster.jpg" src="abt-vid.mp4"></video>
+                </div>
             </div>
         </div>
-    </div>
-     <p style="width: 70%;margin-left: 5%; color: white;">Hi, I'm Subhan — a passionate front-end Web Developer currently sharpening my skills while pursuing a degree in Computer Science. I have a solid foundation in HTML, CSS, Bootstrap, and JavaScript, and I'm constantly working on improving and expanding my knowledge. I'm all about creating clean, responsive, and user-friendly web experiences, and I'm excited to keep growing in this ever-evolving field.</p>
-     <button style="margin-left: 5%;margin-bottom: 5%;" class="about-btn"><a class="text-decoration-none text-white fs-5" href="#contact-sec">About Me</a></button>
+    </section>
+
+    <section id="about" class="container py-4">
+        <p style="width: 70%;margin-left: 5%; color: white;">Hi, I'm Subhan — a passionate front-end Web Developer currently sharpening my skills while pursuing a degree in Computer Science. I have a solid foundation in HTML, CSS, Bootstrap, and JavaScript, and I'm constantly working on improving and expanding my knowledge. I'm all about creating clean, responsive, and user-friendly web experiences, and I'm excited to keep growing in this ever-evolving field.</p>
+        <button style="margin-left: 5%;margin-bottom: 5%;" class="about-btn"><a class="text-decoration-none text-white fs-5" href="#about">About Me</a></button>
+    </section>
     <section class="skills container-fluid" id="skills">
         <h2>My Skills</h2>
         <div class="skills-grid">
@@ -152,25 +161,25 @@
             <div class="projects-card col-12 col-md-6 col-lg-4">
                 <div class="skillhub-card text-center">
                     <i class="fa-solid fa-graduation-cap project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://subhan-shahid.github.io/SkillHub.com/">SkillHub.com</a>
+                    <a class="d-block mt-2" href="https://subhan-shahid.github.io/SkillHub.com/" target="_blank" rel="noopener noreferrer">SkillHub.com</a>
                 </div>
             </div>
             <div class="projects-card col-12 col-md-6 col-lg-4">
                 <div class="ai-card text-center">
                     <i class="fa-solid fa-robot project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://subhan-shahid.github.io/Ai-Namer/">Ai-Namer</a>
+                    <a class="d-block mt-2" href="https://subhan-shahid.github.io/Ai-Namer/" target="_blank" rel="noopener noreferrer">Ai-Namer</a>
                 </div>
             </div>
             <div class="projects-card col-12 col-md-6 col-lg-4">
                 <div class="game-card text-center">
                     <i class="fa-solid fa-chart-line project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://sales-engine-tau.vercel.app/">Sales Engine Tracker</a>
+                    <a class="d-block mt-2" href="https://sales-engine-tau.vercel.app/" target="_blank" rel="noopener noreferrer">Sales Engine Tracker</a>
                 </div>
             </div>
             <div class="projects-card col-12 col-md-6 col-lg-4">
                 <div class="stopwatch-card text-center">
                     <i class="fa-solid fa-stethoscope project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://physio-clinic-one.vercel.app/">Physio Clinic</a>
+                    <a class="d-block mt-2" href="https://physio-clinic-one.vercel.app/" target="_blank" rel="noopener noreferrer">Physio Clinic</a>
                 </div>
             </div>
         </div>
@@ -181,15 +190,15 @@
         <div class="contact-body d-flex flex-wrap justify-content-center gap-4">
              <div class="contact-card p-4 text-center" data-aos="zoom-in" data-aos-delay="100">
                  <h2>Social Media Contacts:</h2>
-                 <a class="icon-btn" href="https://www.linkedin.com/in/subhan-shahid-178672344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fa-brands fa-linkedin"></i></a>
-                 <a class="icon-btn" href="https://www.instagram.com/subhaaanx?igsh=ZDJ4bHV4bXgwb3ht&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+                 <a class="icon-btn" href="https://www.linkedin.com/in/subhan-shahid-178672344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                 <a class="icon-btn" href="https://www.instagram.com/subhaaanx?igsh=ZDJ4bHV4bXgwb3ht&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
                  <a class="icon-btn" href="mailto:subhanshahid1920@gmail.com"><i class="fa-solid fa-envelope"></i></a>
               </div>
               <div class="contact-card p-4 text-center" data-aos="zoom-in" data-aos-delay="200">
                  <h2>Phone Numbers:</h2>
-                        <a class="contact-phone" href="https://wa.link/llc1c8"><i style="margin-right: 10px;" class="fa-solid fa-phone"></i>0321-6405272</a>
+                        <a class="contact-phone" href="https://wa.link/llc1c8" target="_blank" rel="noopener noreferrer"><i style="margin-right: 10px;" class="fa-solid fa-phone"></i>0321-6405272</a>
 
-                <a class="contact-phone" href="https://wa.link/4binzk"><i style="margin-right: 10px;" class="fa-solid fa-phone"></i>03339-6405272</a>
+                <a class="contact-phone" href="https://wa.link/4binzk" target="_blank" rel="noopener noreferrer"><i style="margin-right: 10px;" class="fa-solid fa-phone"></i>03339-6405272</a>
               </div>
               <!-- Contact Form Card -->
               <div class="contact-card p-4" data-aos="zoom-in" data-aos-delay="300">
@@ -217,23 +226,18 @@
                     <textarea id="message" name="message" rows="4" class="form-control" placeholder="Write your message..." aria-label="Your message" required></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary w-100" data-sending-text="Sending...">Send</button>
-                  <div class="mt-3 alert d-none" role="alert" id="contact-alert"></div>
+                  <div class="mt-3 alert d-none" role="alert" id="contact-alert" aria-live="polite"></div>
                 </form>
               </div>
             </div>
         </section>
+
+    </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@^2.3.4/dist/aos.js"></script>
     <!-- anime.js for richer, programmatic animations -->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <script src="pf.js"></script>
-    <script>
-        // Initialize AOS animations after page load
-        AOS.init({
-            once: true, // animate only once
-            duration: 800
-        });
-    </script>
 </body>
 </html>
