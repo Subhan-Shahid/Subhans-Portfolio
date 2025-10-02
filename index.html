@@ -48,8 +48,48 @@
         <div class="container">
             <div class="content ">
                 <h1 class="title">Subhan Shahid,  I'm a <span class="text"></span></h1>
-                <div>
-                <video id="abt-vid" autoplay muted loop playsinline preload="metadata" poster="poster.jpg" src="abt-vid.mp4"></video>
+                <div class="hero-animation">
+                    <div class="animated-developer">
+                        <div class="code-editor">
+                            <div class="editor-header">
+                                <div class="editor-buttons">
+                                    <span class="btn-close"></span>
+                                    <span class="btn-minimize"></span>
+                                    <span class="btn-maximize"></span>
+                                </div>
+                                <div class="editor-title">portfolio.js</div>
+                            </div>
+                            <div class="editor-content">
+                                <div class="code-line">
+                                    <span class="code-keyword">const</span> 
+                                    <span class="code-variable">developer</span> = {
+                                </div>
+                                <div class="code-line indent">
+                                    <span class="code-property">name</span>: 
+                                    <span class="code-string">'Subhan Shahid'</span>,
+                                </div>
+                                <div class="code-line indent">
+                                    <span class="code-property">skills</span>: [
+                                    <span class="code-string">'HTML'</span>, 
+                                    <span class="code-string">'CSS'</span>, 
+                                    <span class="code-string">'JS'</span>],
+                                </div>
+                                <div class="code-line indent">
+                                    <span class="code-property">passion</span>: 
+                                    <span class="code-string">'Frontend Development'</span>
+                                </div>
+                                <div class="code-line">};</div>
+                            </div>
+                        </div>
+                        <div class="floating-icons">
+                            <i class="fab fa-html5 floating-icon icon-1"></i>
+                            <i class="fab fa-css3-alt floating-icon icon-2"></i>
+                            <i class="fab fa-js-square floating-icon icon-3"></i>
+                            <i class="fab fa-bootstrap floating-icon icon-4"></i>
+                            <i class="fab fa-node-js floating-icon icon-5"></i>
+                            <i class="fas fa-database floating-icon icon-6"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,124 +102,371 @@
     <section class="skills container-fluid" id="skills">
         <h2>My Skills</h2>
         <div class="skills-grid">
-            <div class="card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-brands fa-html5"></i>
-                    <h5 class="card-title">HTML</h5>
-                    <p class="skill-level">Intermediate</p>
-                     <div>
-                        <p class="card-body-js" style="display: none;">
-                            I am proficient in HTML, the backbone of web development, and possess a strong understanding of its fundamental concepts. I have hands-on experience creating structured, semantic, and accessible web pages. From building responsive layouts using modern HTML5 tags to integrating multimedia content, I ensure that my code is both efficient and compliant with web standards. My attention to detail helps me craft well-organized and maintainable code, making me a reliable asset for front-end development projects.
-                        </p>
+            <div class="modern-skill-card" data-skill="html">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-brands fa-html5 skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">HTML5</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="75"></div>
+                            <span class="progress-text">75%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Semantic HTML</span>
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>I am proficient in HTML, the backbone of web development, and possess a strong understanding of its fundamental concepts. I have hands-on experience creating structured, semantic, and accessible web pages.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
-            <div class=" card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-brands fa-css3-alt"></i>
-                    <h5>CSS</h5>
-                    <p>Intermediate</p>
-                     <div>
-                        <p class="card-body-js" style="display: none;" >
-                            As an intermediate CSS developer, I possess a solid understanding of core styling concepts, including responsive design, layout techniques (such as Flexbox and Grid), and modern CSS features. I am proficient in creating visually appealing and user-friendly interfaces, optimizing designs for various screen sizes and devices. I continuously seek opportunities to refine my skills and stay updated with the latest CSS advancements.
-                        </p>
+
+            <div class="modern-skill-card" data-skill="css">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-brands fa-css3-alt skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">CSS3</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="80"></div>
+                            <span class="progress-text">80%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Flexbox</span>
+                            <span class="tag">Grid</span>
+                            <span class="tag">Animations</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>As an intermediate CSS developer, I possess a solid understanding of core styling concepts, including responsive design, layout techniques, and modern CSS features.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
-            <div class="card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-brands fa-js"></i>
-                    <h5>JavaScript</h5>
-                    <p>Intermediate</p>
-                    <div>
-                        <p class="card-body-js" style="display: none;">
-                           I have intermediate skills in JavaScript, including working with events, arrays, DOM manipulation, and functions to build interactive and dynamic web applications. I write efficient, modular code and am eager to gain more experience to further enhance my expertise.
-                        </p>
+
+            <div class="modern-skill-card" data-skill="javascript">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-brands fa-js skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">JavaScript</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="70"></div>
+                            <span class="progress-text">70%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">ES6+</span>
+                            <span class="tag">DOM</span>
+                            <span class="tag">APIs</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>I have intermediate skills in JavaScript, including working with events, arrays, DOM manipulation, and functions to build interactive and dynamic web applications.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
-            <div class="card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-brands fa-bootstrap"></i>
-                    <h5>Bootstrap</h5>
-                    <p>Intermediate</p>
-                    <div>
-                        <p class="card-body-js" style="display: none;">
-                          I have intermediate skills in Bootstrap, including creating responsive layouts, utilizing the grid system, and leveraging utility classes for spacing, alignment, and typography. I am proficient in building adaptive and visually consistent interfaces, and I am eager to gain more experience to further enhance my Bootstrap expertise.
-                        </p>
+
+            <div class="modern-skill-card" data-skill="bootstrap">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-brands fa-bootstrap skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Bootstrap</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="85"></div>
+                            <span class="progress-text">85%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Grid System</span>
+                            <span class="tag">Components</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>I have intermediate skills in Bootstrap, including creating responsive layouts, utilizing the grid system, and leveraging utility classes for modern interfaces.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
-            <div class="card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <h5>Software Development</h5>
-                    <p>Intermediate</p>
-                    <div>
-                        <p class="card-body-js" style="display: none;">
-                            I build reliable software with a focus on clean code, version control (Git/GitHub), problem solving, and delivering features end‑to‑end. My experience spans planning, implementing, testing, and iterating on projects using HTML, CSS, JavaScript, and Bootstrap, while following best practices for usability and maintainability.
-                        </p>
+
+            <div class="modern-skill-card" data-skill="development">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-solid fa-laptop-code skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Software Development</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="78"></div>
+                            <span class="progress-text">78%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Git</span>
+                            <span class="tag">Testing</span>
+                            <span class="tag">Debugging</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>I build reliable software with a focus on clean code, version control, problem solving, and delivering features end-to-end with best practices.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
-            <div class="card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-solid fa-database"></i>
-                    <h5>Data Enthusiast</h5>
-                    <p>Intermediate</p>
-                    <div>
-                        <p class="card-body-js" style="display: none;">
-                            I enjoy exploring data to find insights and trends. I work with spreadsheets and basic data tools to clean, analyze, and visualize information. I focus on clear presentation and storytelling through charts and dashboards, and I’m actively learning deeper concepts like databases, SQL, and data workflows.
-                        </p>
+
+            <div class="modern-skill-card" data-skill="data">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-solid fa-database skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Data Analysis</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="65"></div>
+                            <span class="progress-text">65%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Visualization</span>
+                            <span class="tag">Insights</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>I enjoy exploring data to find insights and trends. I work with data tools to clean, analyze, and visualize information with clear presentation.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
-            <div class="card bg-success skill-card">
-                <div class="card-body text-center">
-                    <i class="fa-brands fa-node-js"></i>
-                    <h5>Backend (Node.js)</h5>
-                    <p>Beginner</p>
-                    <div>
-                        <p class="card-body-js" style="display: none;">
-                            Learning backend development with Node.js and Express: building simple REST APIs, routing, middleware, working with JSON, environment variables, and npm packages. Comfortable connecting to services and handling async operations, with a focus on writing clean, modular server code.
-                        </p>
+
+            <div class="modern-skill-card" data-skill="nodejs">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fa-brands fa-node-js skill-icon"></i>
+                        <div class="skill-glow"></div>
                     </div>
-                    <button type="button" class="btn btn-primary">Details</button>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Node.js</h3>
+                        <p class="skill-level">Beginner</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="45"></div>
+                            <span class="progress-text">45%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Express</span>
+                            <span class="tag">APIs</span>
+                            <span class="tag">NPM</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Learning backend development with Node.js and Express: building REST APIs, routing, middleware, and handling async operations with clean, modular code.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
                 </div>
             </div>
         </div>    
     </section>
     <section id="project-sec" class="projects-sec container-fluid">
         <h2 class="text-center">My Projects</h2>
-        <div class="projects-body row g-4 justify-content-center mt-3">
-            <div class="projects-card col-12 col-md-6 col-lg-4">
-                <div class="skillhub-card text-center">
-                    <i class="fa-solid fa-graduation-cap project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://subhan-shahid.github.io/SkillHub.com/" target="_blank" rel="noopener noreferrer">SkillHub.com</a>
+        <div class="projects-grid">
+            <div class="modern-project-card" data-project="skillhub">
+                <div class="project-card-inner">
+                    <div class="project-header">
+                        <div class="project-icon-container">
+                            <i class="fa-solid fa-graduation-cap project-icon"></i>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge live">Live</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">SkillHub.com</h3>
+                        <p class="project-description">A comprehensive learning platform for skill development with interactive courses and progress tracking.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://subhan-shahid.github.io/SkillHub.com/" target="_blank" rel="noopener noreferrer" class="project-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <button class="project-btn secondary">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </button>
+                    </div>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <h4>Project Features</h4>
+                            <ul>
+                                <li>Interactive Learning Modules</li>
+                                <li>Progress Tracking System</li>
+                                <li>Responsive Design</li>
+                                <li>Modern UI/UX</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="projects-card col-12 col-md-6 col-lg-4">
-                <div class="ai-card text-center">
-                    <i class="fa-solid fa-robot project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://subhan-shahid.github.io/Ai-Namer/" target="_blank" rel="noopener noreferrer">Ai-Namer</a>
+
+            <div class="modern-project-card" data-project="ai-namer">
+                <div class="project-card-inner">
+                    <div class="project-header">
+                        <div class="project-icon-container">
+                            <i class="fa-solid fa-robot project-icon"></i>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge live">Live</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Namer</h3>
+                        <p class="project-description">An intelligent naming tool that generates creative and meaningful names using AI algorithms.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">HTML5</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://subhan-shahid.github.io/Ai-Namer/" target="_blank" rel="noopener noreferrer" class="project-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <button class="project-btn secondary">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </button>
+                    </div>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <h4>Project Features</h4>
+                            <ul>
+                                <li>AI-Powered Name Generation</li>
+                                <li>Multiple Categories</li>
+                                <li>Real-time Suggestions</li>
+                                <li>Clean Interface</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="projects-card col-12 col-md-6 col-lg-4">
-                <div class="game-card text-center">
-                    <i class="fa-solid fa-chart-line project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://sales-engine-tau.vercel.app/" target="_blank" rel="noopener noreferrer">Sales Engine Tracker</a>
+
+            <div class="modern-project-card" data-project="sales-engine">
+                <div class="project-card-inner">
+                    <div class="project-header">
+                        <div class="project-icon-container">
+                            <i class="fa-solid fa-chart-line project-icon"></i>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge live">Live</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sales Engine Tracker</h3>
+                        <p class="project-description">A powerful sales analytics dashboard with real-time tracking and comprehensive reporting features.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Charts.js</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://sales-engine-tau.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <button class="project-btn secondary">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </button>
+                    </div>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <h4>Project Features</h4>
+                            <ul>
+                                <li>Real-time Analytics</li>
+                                <li>Interactive Charts</li>
+                                <li>Data Visualization</li>
+                                <li>Performance Metrics</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="projects-card col-12 col-md-6 col-lg-4">
-                <div class="stopwatch-card text-center">
-                    <i class="fa-solid fa-stethoscope project-icon" aria-hidden="true"></i>
-                    <a class="d-block mt-2" href="https://physio-clinic-one.vercel.app/" target="_blank" rel="noopener noreferrer">Physio Clinic</a>
+
+            <div class="modern-project-card" data-project="physio-clinic">
+                <div class="project-card-inner">
+                    <div class="project-header">
+                        <div class="project-icon-container">
+                            <i class="fa-solid fa-stethoscope project-icon"></i>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge live">Live</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Physio Clinic</h3>
+                        <p class="project-description">A modern healthcare website for physiotherapy services with appointment booking, patient management, and real-time data storage.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">HTML5</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://physio-clinic-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <button class="project-btn secondary">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </button>
+                    </div>
+                    <div class="project-overlay">
+                        <div class="overlay-content">
+                            <h4>Project Features</h4>
+                            <ul>
+                                <li>React Component Architecture</li>
+                                <li>Firebase Real-time Database</li>
+                                <li>Tailwind CSS Styling</li>
+                                <li>Appointment Management System</li>
+                                <li>Responsive Mobile Design</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

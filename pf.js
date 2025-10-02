@@ -215,7 +215,7 @@ function animeInit(){
       }, '-=400');
 }
 
-// IntersectionObserver + anime.js reveal
+// IntersectionObserver + anime.js reveal + Progress Bar Animation
 function setupRevealAnimations(){
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const useAnime = typeof window.anime !== 'undefined';
@@ -226,6 +226,8 @@ function setupRevealAnimations(){
             el.classList.add('visible');
             el.style.opacity = '1';
             el.style.transform = 'none';
+            // Animate progress bars even without anime.js
+            animateProgressBar(el);
             return;
         }
         anime({
@@ -234,8 +236,22 @@ function setupRevealAnimations(){
             opacity: [0, 1],
             scale: [0.96, 1],
             easing: 'easeOutCubic',
-            duration: 750
+            duration: 750,
+            complete: () => {
+                // Animate progress bar after card animation
+                animateProgressBar(el);
+            }
         });
+    };
+
+    const animateProgressBar = (card) => {
+        const progressBar = card.querySelector('.progress-bar');
+        if (progressBar) {
+            const progress = progressBar.getAttribute('data-progress');
+            setTimeout(() => {
+                progressBar.style.width = progress + '%';
+            }, 300);
+        }
     };
 
     const observer = new IntersectionObserver(entries => {
@@ -247,7 +263,7 @@ function setupRevealAnimations(){
         });
     }, { threshold: 0.25 });
 
-    document.querySelectorAll('.skill-card, .projects-card, .contact-card').forEach(el => {
+    document.querySelectorAll('.skill-card, .modern-skill-card, .projects-card, .modern-project-card, .contact-card').forEach(el => {
         // set initial state to ensure visible effect
         if (!prefersReduced){
             el.style.opacity = '0';
