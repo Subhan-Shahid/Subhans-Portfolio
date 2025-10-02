@@ -347,6 +347,8 @@ function setupActiveNavObserver(){
 
 // init on DOM ready
 function init(){
+    // Initialize theme first to avoid FOUC
+    setupThemeToggle();
     setupDetailToggles();
     setupContactFormUX();
     setupNavbarScroll();
@@ -381,3 +383,57 @@ if (document.readyState === 'loading'){
 }
 
 // cleaned stray/broken code above
+
+// Theme toggle with persistence and system preference
+function setupThemeToggle(){
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+
+    const getStored = () => localStorage.getItem('theme');
+    const store = (t) => { try { localStorage.setItem('theme', t); } catch {} };
+    const systemPref = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+
+    const apply = (theme) => {
+        // Use data-theme="light" for light; remove attribute for dark (default)
+        if (theme === 'light') root.setAttribute('data-theme', 'light');
+        else root.removeAttribute('data-theme');
+        updateToggleUI(theme);
+    };
+
+    const current = () => getStored() || systemPref();
+
+    const updateToggleUI = (theme) => {
+        if (!btn) return;
+        const icon = btn.querySelector('i');
+        if (icon){
+            icon.classList.toggle('fa-moon', theme !== 'light');
+            icon.classList.toggle('fa-sun', theme === 'light');
+        }
+        // Adjust outline color based on background
+        btn.classList.toggle('btn-outline-light', theme !== 'light');
+        btn.classList.toggle('btn-outline-dark', theme === 'light');
+        btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+        btn.title = theme === 'light' ? 'Switch to dark' : 'Switch to light';
+    };
+
+    // Initial apply
+    apply(current());
+
+    // React to system changes if user hasn't chosen
+    if (window.matchMedia){
+        try {
+            const mq = window.matchMedia('(prefers-color-scheme: light)');
+            mq.addEventListener?.('change', () => {
+                if (!getStored()) apply(systemPref());
+            });
+        } catch {}
+    }
+
+    if (btn){
+        btn.addEventListener('click', () => {
+            const next = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+            store(next);
+            apply(next);
+        });
+    }
+}

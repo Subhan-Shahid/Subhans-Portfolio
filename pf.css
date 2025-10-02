@@ -43,6 +43,9 @@ html{ scroll-padding-top: var(--nav-h); }
   --btn-primary-start: #2a74ff;
   --btn-primary-end: #1e58c7;
   --nav-h: 64px;
+  /* theme backgrounds */
+  --bg: #0b1624;
+  --section-bg: #04162e;
 }
 
 body {
@@ -50,7 +53,29 @@ body {
             font-family: Arial, sans-serif;
             color: var(--text);
             padding-top: var(--nav-h);
+            background: var(--bg);
         }
+
+/* Light theme overrides */
+html[data-theme="light"]{
+  --text: #0f172a; /* slate-900 */
+  --text-muted: #334155; /* slate-700 */
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --icon-default: #0f172a;
+  --bg: #f7fafc; /* near white */
+  --section-bg: #ffffff;
+}
+
+/* Navbar translucency per theme */
+html[data-theme="light"] .navbar{
+  background: rgba(255,255,255,0.6);
+}
+html[data-theme="light"] .navbar.scrolled{
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
 
         .navbar {
     position: fixed;
@@ -153,16 +178,33 @@ body {
 
 
         @keyframes changeText {
-            0%, 33% { content: "DEVELOPER"; }
-            34%, 66% { content: "DESIGNER"; }
-            67%, 100% { content: "PROGRAMMER"; }
+            0%, 33% { content: "Developer"; }
+            34%, 66% { content: "Designer"; }
+            67%, 100% { content: "Programmer"; }
+        }
+        /* animated flowing gradient for the role word */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .text::after {
-            color: var(--brand-gold);
-            content: "developer";
+            content: "Developer";
             display: inline-block;
-            animation: changeText 6s infinite;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* reveal gradient */
+            font-weight: 800;
+            letter-spacing: .5px;
+            animation: changeText 6s infinite steps(1), gradientShift 6s ease-in-out infinite;
+            filter: drop-shadow(0 2px 10px rgba(0,210,255,0.25));
+        }
+        /* light theme: strengthen visibility on bright bg */
+        html[data-theme="light"] .text::after{
+            filter: drop-shadow(0 1px 6px rgba(2,6,23,0.15)); /* slate-950 shadow */
         }
 
         .container {
@@ -360,17 +402,46 @@ body {
             border: 1px solid white;
             padding: 0.5rem 1rem;
             cursor: pointer;
-            margin-top: 1rem;
         }
 
-
-         .skills {
-            background-color: #04162e;
-            padding: 50px 20px;
-            text-align: center;
+        .skills {
+           background-color: var(--section-bg);
+           padding: 50px 20px;
+           text-align: center;
         }
+/* Decorative floating icons for Skills section */
+.skills{ position: relative; overflow: hidden; }
+.skills-icons{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.skills-floating-icon{
+  position: absolute;
+  font-size: 2.4rem;
+  opacity: .18;
+  animation: float 10s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.25));
+}
+@media (min-width: 992px){ .skills-floating-icon{ font-size: 3rem; } }
+@media (max-width: 576px){ .skills-floating-icon{ font-size: 1.8rem; } }
 
-        
+/* Brand colors */
+.skills-floating-icon.s-html{ color: #e34c26; top: 6%; left: 6%; animation-delay: 0s; }
+.skills-floating-icon.s-css{ color: #1572b6; top: 14%; right: 8%; animation-delay: .6s; }
+.skills-floating-icon.s-bootstrap{ color: #7952b3; bottom: 18%; left: 10%; animation-delay: 1.2s; }
+.skills-floating-icon.s-tailwind{ color: #38bdf8; top: 28%; left: 20%; animation-delay: 1.8s; }
+.skills-floating-icon.s-js{ color: #f7df1e; bottom: 12%; right: 16%; animation-delay: 2.4s; }
+.skills-floating-icon.s-react{ color: #61dafb; top: 50%; right: 6%; animation-delay: 3s; }
+.skills-floating-icon.s-node{ color: #68a063; bottom: 30%; left: 50%; animation-delay: 3.6s; }
+.skills-floating-icon.s-mongo{ color: #4db33d; top: 64%; left: 8%; animation-delay: 4.2s; }
+.skills-floating-icon.s-firebase{ color: #ffca28; bottom: 8%; left: 32%; animation-delay: 4.8s; }
+.skills-floating-icon.s-supabase{ color: #3ecf8e; top: 12%; left: 70%; animation-delay: 5.4s; }
+.skills-floating-icon.s-mysql{ color: #4479a1; top: 72%; right: 10%; animation-delay: 6s; }
+
+/* Theme tweaks: reduce opacity slightly in light theme to avoid clutter */
+html[data-theme="light"] .skills-floating-icon{ opacity: .14; }
+
 
 @media (max-width: 576px) {
     .hero-animation{
@@ -731,6 +802,37 @@ body {
             background: radial-gradient(circle, rgba(104,160,99,0.4), transparent);
         }
 
+        /* New Skills */
+        .modern-skill-card[data-skill="tailwind"] .skill-icon { color: #38bdf8; }
+        .modern-skill-card[data-skill="tailwind"] .skill-glow {
+            background: radial-gradient(circle, rgba(56,189,248,0.4), transparent);
+        }
+
+        .modern-skill-card[data-skill="react"] .skill-icon { color: #61dafb; }
+        .modern-skill-card[data-skill="react"] .skill-glow {
+            background: radial-gradient(circle, rgba(97,218,251,0.4), transparent);
+        }
+
+        .modern-skill-card[data-skill="mongodb"] .skill-icon { color: #4db33d; }
+        .modern-skill-card[data-skill="mongodb"] .skill-glow {
+            background: radial-gradient(circle, rgba(77,179,61,0.4), transparent);
+        }
+
+        .modern-skill-card[data-skill="firebase"] .skill-icon { color: #ffca28; }
+        .modern-skill-card[data-skill="firebase"] .skill-glow {
+            background: radial-gradient(circle, rgba(255,202,40,0.35), transparent);
+        }
+
+        .modern-skill-card[data-skill="supabase"] .skill-icon { color: #3ecf8e; }
+        .modern-skill-card[data-skill="supabase"] .skill-glow {
+            background: radial-gradient(circle, rgba(62,207,142,0.4), transparent);
+        }
+
+        .modern-skill-card[data-skill="mysql"] .skill-icon { color: #4479a1; }
+        .modern-skill-card[data-skill="mysql"] .skill-glow {
+            background: radial-gradient(circle, rgba(68,121,161,0.4), transparent);
+        }
+
         /* Modern Projects Section */
         .projects-sec{
             margin-bottom: 8%;
@@ -738,7 +840,7 @@ body {
         }
 
         .projects-sec h2{
-            color: var(--brand-gold);
+            color: #ffffff; /* dark theme: white heading */
             font-size: 250%;
             margin-top: 2%;
             margin-bottom: 4rem;
@@ -746,6 +848,10 @@ body {
             animation: typing 3s infinite;
             text-align: center; 
             font-weight: bold;
+        }
+        /* Light theme: project heading should be black */
+        html[data-theme="light"] .projects-sec h2{
+            color: #000000;
         }
 
         /* Projects Grid */
@@ -860,6 +966,36 @@ body {
             padding: 60px 16px;
             overflow: hidden;
         }
+        html[data-theme="light"] .contact-sec{
+            /* Higher contrast, cleaner light background */
+            background: #f1f5f9; /* slate-100 for better contrast with white cards */
+        }
+        /* Light theme: default all contact section text to dark */
+        html[data-theme="light"] .contact-sec{
+            color: #0f172a;
+        }
+        html[data-theme="light"] .contact-sec h1,
+        html[data-theme="light"] .contact-sec h2,
+        html[data-theme="light"] .contact-sec h3,
+        html[data-theme="light"] .contact-sec h4,
+        html[data-theme="light"] .contact-sec h5,
+        html[data-theme="light"] .contact-sec h6,
+        html[data-theme="light"] .contact-sec p,
+        html[data-theme="light"] .contact-sec span,
+        html[data-theme="light"] .contact-sec li,
+        html[data-theme="light"] .contact-sec label,
+        html[data-theme="light"] .contact-sec a{
+            color: #0f172a !important;
+        }
+        /* Keep intended exceptions */
+        html[data-theme="light"] .contact-form .btn.btn-primary{ color: #ffffff !important; }
+        /* Icons inherit current color */
+        html[data-theme="light"] .contact-sec i{ color: inherit; }
+        /* In light theme, remove decorative glows to improve contrast */
+        html[data-theme="light"] .contact-sec::before,
+        html[data-theme="light"] .contact-sec::after{
+            display: none;
+        }
         .contact-sec::before{
             content: "";
             position: absolute;
@@ -870,6 +1006,187 @@ body {
             background: radial-gradient(closest-side, rgba(58, 71, 213, 0.25), rgba(58, 71, 213, 0.0));
             filter: blur(6px);
             pointer-events: none;
+        }
+        /* Contact cards and controls - theme aware */
+        .contact-card{
+            background: rgba(255,255,255,0.08); /* stronger contrast for dark */
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 16px;
+            color: var(--text);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        html[data-theme="light"] .contact-card{
+            background: #ffffff;
+            border-color: #cbd5e1; /* slate-300 for clearer edge */
+            box-shadow: 0 8px 18px rgba(15,23,42,0.12);
+        }
+        /* Ensure all text inside contact cards is dark in light theme */
+        html[data-theme="light"] .contact-card,
+        html[data-theme="light"] .contact-card h2,
+        html[data-theme="light"] .contact-card p,
+        html[data-theme="light"] .contact-card a,
+        html[data-theme="light"] .contact-card i,
+        html[data-theme="light"] .contact-card span,
+        html[data-theme="light"] .contact-card li,
+        html[data-theme="light"] .contact-card label{
+            color: #0f172a;
+        }
+        /* Light theme: refine hover to keep crisp, not dark-glassy */
+        html[data-theme="light"] .contact-card:hover{
+            border-color: #94a3b8; /* slate-400 */
+            box-shadow: 0 12px 28px rgba(15,23,42,0.16);
+        }
+        .contact-card:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.18);
+        }
+        .contact-sec h1,
+        .contact-card h2{
+            color: var(--text) !important;
+        }
+
+        /* Icon buttons */
+        .contact-card .icon-btn{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            margin: 0 .4rem;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.04);
+            transition: transform .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+        html[data-theme="light"] .contact-card .icon-btn{
+            color: #0f172a; /* ensure icon contrast */
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+        /* Make icons inherit color from button for light theme */
+        .contact-card .icon-btn i{ color: inherit; }
+        .contact-card .icon-btn:hover{
+            color: var(--accent);
+            border-color: rgba(0,210,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,210,255,0.2);
+        }
+
+        /* Phone links */
+        .contact-card .contact-phone{
+            display: inline-block;
+            color: var(--text);
+            text-decoration: none;
+            padding: .4rem .75rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.04);
+            transition: color .2s ease, border-color .2s ease, transform .2s ease;
+        }
+        html[data-theme="light"] .contact-card .contact-phone{
+            color: #0f172a;
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+        .contact-card .contact-phone:hover{
+            color: var(--accent);
+            border-color: rgba(0,210,255,0.35);
+            transform: translateY(-1px);
+        }
+
+        /* Form styles */
+        .contact-form .form-label{ color: var(--text); font-weight: 600; }
+        .contact-form .form-control,
+        .contact-form textarea.form-control{
+            background: rgba(255,255,255,0.06);
+            border-color: var(--glass-border);
+            color: var(--text);
+            border-radius: 10px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+        }
+        .contact-form .form-control::placeholder,
+        .contact-form textarea.form-control::placeholder{ color: var(--text-muted); }
+        .contact-form .form-control:focus,
+        .contact-form textarea.form-control:focus{
+            border-color: var(--accent);
+            box-shadow: 0 0 0 .2rem rgba(0,210,255,0.25);
+        }
+        .contact-form .form-control:disabled,
+        .contact-form .form-control[disabled],
+        .contact-form textarea.form-control:disabled,
+        .contact-form textarea.form-control[disabled]{
+            background: rgba(255,255,255,0.08);
+            color: var(--text-muted);
+            border-color: var(--glass-border);
+        }
+        html[data-theme="light"] .contact-form .form-control,
+        html[data-theme="light"] .contact-form textarea.form-control{
+            background: #ffffff;
+            border-color: #cbd5e1; /* clearer outline */
+            color: #0f172a;
+            box-shadow: 0 1px 0 rgba(15,23,42,0.06) inset;
+        }
+        /* Light theme: darker placeholder + labels for accessibility */
+        html[data-theme="light"] .contact-form .form-label{ color: #0f172a; }
+        html[data-theme="light"] .contact-form .form-control::placeholder,
+        html[data-theme="light"] .contact-form textarea.form-control::placeholder{ color: #475569; /* slate-600 */ }
+        html[data-theme="light"] .contact-form .form-control:disabled,
+        html[data-theme="light"] .contact-form .form-control[disabled],
+        html[data-theme="light"] .contact-form textarea.form-control:disabled,
+        html[data-theme="light"] .contact-form textarea.form-control[disabled]{
+            background: #f8fafc;
+            color: #64748b; /* slate-500 */
+            border-color: #e5e7eb;
+        }
+
+        /* Invalid state */
+        .contact-form .form-control.is-invalid,
+        .contact-form textarea.form-control.is-invalid{
+            border-color: #ef4444; /* red-500 */
+        }
+        .contact-form .form-control.is-invalid:focus,
+        .contact-form textarea.form-control.is-invalid:focus{
+            box-shadow: 0 0 0 .2rem rgba(239,68,68,0.25);
+        }
+
+        /* Primary button align with accent */
+        .contact-form .btn.btn-primary{
+            background-image: linear-gradient(45deg, var(--accent), var(--accent-2));
+            background-color: var(--accent);
+            border: none;
+            color: #fff;
+        }
+        .contact-form .btn.btn-primary:hover{
+            filter: brightness(1.05);
+            box-shadow: 0 8px 24px rgba(0,210,255,0.25);
+        }
+
+        /* Alerts styling inside card (AJAX feedback) */
+        .contact-card .alert{ border-radius: 12px; }
+        .contact-card .alert-success{
+            background: rgba(34,197,94,0.15);
+            color: #16a34a; /* green-600 */
+            border: 1px solid rgba(34,197,94,0.3);
+        }
+        .contact-card .alert-danger{
+            background: rgba(239,68,68,0.15);
+            color: #dc2626; /* red-600 */
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+        html[data-theme="light"] .contact-card .alert-success{
+            background: #ecfdf5; /* emerald-50 */
+            border-color: #bbf7d0; /* green-200 */
+            color: #166534; /* green-800 */
+        }
+        html[data-theme="light"] .contact-card .alert-danger{
+            background: #fef2f2; /* red-50 */
+            border-color: #fecaca; /* red-200 */
+            color: #991b1b; /* red-800 */
         }
         /* extra soft gradient accent at bottom-left */
         .contact-sec::after{
@@ -905,16 +1222,18 @@ body {
 
 
         .contact-sec h1{
-            color: #ffffff !important;
-            color: #ffffff;
-            color: rgb(240, 240, 59);
+            color: #ffffff; /* dark theme: white heading */
             text-align: center;
             padding-top: 0;
             font-size: 250%;
             margin-bottom: 5%;
             font-weight: bold;
-             white-space: nowrap;
+            white-space: nowrap;
             animation: typing 3s infinite;
+        }
+        /* Light theme: make heading dark for contrast */
+        html[data-theme="light"] .contact-sec h1{
+            color: #0f172a !important; /* slate-900 */
         }
         /* gradient underline accent for heading */
         .contact-sec h1::after{
@@ -944,7 +1263,7 @@ body {
         }
         .contact-sec a:hover{
             cursor: pointer;
-            color: rgb(192, 187, 187);
+            color: var(--accent);
             transform: translateX(15%);
         }
 

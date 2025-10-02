@@ -17,12 +17,12 @@
         }
     </style>
 </head>
-<body style="background-color: #1d2b3f;">
+<body>
 <a href="#main" class="skip-link">Skip to content</a>
 <header>
     <nav id="navbar" class="navbar navbar-expand-lg shadow">
-        <div class="container-fluid">
-            <div class="social-link d-flex">
+      <div class="container-fluid">
+        <div class="social-link d-flex">
                 <a href="https://www.linkedin.com/in/subhan-shahid-178672344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://www.instagram.com/subhaaanx?igsh=ZDJ4bHV4bXgwb3ht&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
                 <a href="mailto:subhanshahid1920@gmail.com"><i class="fa-solid fa-envelope"></i></a>
@@ -37,6 +37,9 @@
                     <li class="nav-item"><a class="nav-link" href="#project-sec">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact-sec">Contact</a></li>
                 </ul>
+                <button id="themeToggle" class="btn btn-outline-light ms-lg-3 mt-2 mt-lg-0 theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -71,24 +74,24 @@
                                 <div class="code-line indent">
                                     <span class="code-property">skills</span>: [
                                     <span class="code-string">'HTML'</span>, 
-                                    <span class="code-string">'CSS'</span>, 
-                                    <span class="code-string">'JS'</span>],
+                                    <span class="code-string">'CSS'</span>,
+                                    <span class="code-string">'Tailwind CSS'</span>, 
+                                    <span class="code-string">'JS'</span>
+                                    <span class="code-string">'React.Js'</span>
+                                    <span class="code-string">'Node.Js'</span>
+                                    <span class="code-string">'MongoDB'</span>
+                                    <span class="code-string">'Firebase'</span>
+                                    <span class="code-string">'MySQL'</span>
+                                    ],
                                 </div>
                                 <div class="code-line indent">
                                     <span class="code-property">passion</span>: 
-                                    <span class="code-string">'Frontend Development'</span>
+                                    <span class="code-string">'Full Stack Development'</span>
                                 </div>
                                 <div class="code-line">};</div>
                             </div>
                         </div>
-                        <div class="floating-icons">
-                            <i class="fab fa-html5 floating-icon icon-1"></i>
-                            <i class="fab fa-css3-alt floating-icon icon-2"></i>
-                            <i class="fab fa-js-square floating-icon icon-3"></i>
-                            <i class="fab fa-bootstrap floating-icon icon-4"></i>
-                            <i class="fab fa-node-js floating-icon icon-5"></i>
-                            <i class="fas fa-database floating-icon icon-6"></i>
-                        </div>
+                        <!-- floating icons moved to skills section -->
                     </div>
                 </div>
             </div>
@@ -96,11 +99,25 @@
     </section>
 
     <section id="about" class="container py-4">
-        <p style="width: 70%;margin-left: 5%; color: white;">Hi, I'm Subhan — a passionate front-end Web Developer currently sharpening my skills while pursuing a degree in Computer Science. I have a solid foundation in HTML, CSS, Bootstrap, and JavaScript, and I'm constantly working on improving and expanding my knowledge. I'm all about creating clean, responsive, and user-friendly web experiences, and I'm excited to keep growing in this ever-evolving field.</p>
-        <button style="margin-left: 5%;margin-bottom: 5%;" class="about-btn"><a class="text-decoration-none text-white fs-5" href="#about">About Me</a></button>
+        <p style="width: 70%;margin-left: 5%;">Hi, I'm Subhan — a passionate front-end Web Developer currently sharpening my skills while pursuing a degree in Computer Science. I have a solid foundation in HTML, CSS, Bootstrap, and JavaScript, and I'm constantly working on improving and expanding my knowledge. I'm all about creating clean, responsive, and user-friendly web experiences, and I'm excited to keep growing in this ever-evolving field.</p>
+        <button style="margin-left: 5%;margin-bottom: 5%;" class="about-btn"><a class="text-decoration-none text-reset fs-5" href="#about">About Me</a></button>
     </section>
     <section class="skills container-fluid" id="skills">
         <h2>My Skills</h2>
+        <!-- Decorative animated skill icons -->
+        <div class="skills-icons" aria-hidden="true">
+            <i class="fab fa-html5 skills-floating-icon s-html" title="HTML5"></i>
+            <i class="fab fa-css3-alt skills-floating-icon s-css" title="CSS3"></i>
+            <i class="fab fa-bootstrap skills-floating-icon s-bootstrap" title="Bootstrap"></i>
+            <i class="fas fa-wind skills-floating-icon s-tailwind" title="Tailwind CSS"></i>
+            <i class="fab fa-js skills-floating-icon s-js" title="JavaScript"></i>
+            <i class="fab fa-react skills-floating-icon s-react" title="React"></i>
+            <i class="fab fa-node-js skills-floating-icon s-node" title="Node.js"></i>
+            <i class="fas fa-leaf skills-floating-icon s-mongo" title="MongoDB"></i>
+            <i class="fas fa-fire skills-floating-icon s-firebase" title="Firebase"></i>
+            <i class="fas fa-cloud skills-floating-icon s-supabase" title="Supabase"></i>
+            <i class="fas fa-database skills-floating-icon s-mysql" title="MySQL"></i>
+        </div>
         <div class="skills-grid">
             <div class="modern-skill-card" data-skill="html">
                 <div class="skill-card-inner">
@@ -279,6 +296,163 @@
                     </div>
                     <div class="skill-details">
                         <p>Learning backend development with Node.js and Express: building REST APIs, routing, middleware, and handling async operations with clean, modular code.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Added skills -->
+            <div class="modern-skill-card" data-skill="tailwind">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fas fa-wind skill-icon"></i>
+                        <div class="skill-glow"></div>
+                    </div>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Tailwind CSS</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="75"></div>
+                            <span class="progress-text">75%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Utility-first</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Design</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Build modern UIs rapidly using utility classes, variants, and theming.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-skill-card" data-skill="react">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fab fa-react skill-icon"></i>
+                        <div class="skill-glow"></div>
+                    </div>
+                    <div class="skill-content">
+                        <h3 class="skill-title">React</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="70"></div>
+                            <span class="progress-text">70%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Hooks</span>
+                            <span class="tag">SPA</span>
+                            <span class="tag">Components</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Component-driven UIs with hooks, state management, and routing.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-skill-card" data-skill="mongodb">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fas fa-leaf skill-icon"></i>
+                        <div class="skill-glow"></div>
+                    </div>
+                    <div class="skill-content">
+                        <h3 class="skill-title">MongoDB</h3>
+                        <p class="skill-level">Beginner</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="50"></div>
+                            <span class="progress-text">50%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">NoSQL</span>
+                            <span class="tag">Collections</span>
+                            <span class="tag">Mongoose</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Document modeling, CRUD operations, and basic indexing.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-skill-card" data-skill="firebase">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fas fa-fire skill-icon"></i>
+                        <div class="skill-glow"></div>
+                    </div>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Firebase</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="68"></div>
+                            <span class="progress-text">68%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Auth</span>
+                            <span class="tag">Firestore</span>
+                            <span class="tag">Hosting</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Apps with authentication, real-time database, and hosting.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-skill-card" data-skill="supabase">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fas fa-cloud skill-icon"></i>
+                        <div class="skill-glow"></div>
+                    </div>
+                    <div class="skill-content">
+                        <h3 class="skill-title">Supabase</h3>
+                        <p class="skill-level">Beginner</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="45"></div>
+                            <span class="progress-text">45%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">Postgres</span>
+                            <span class="tag">Auth</span>
+                            <span class="tag">Storage</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Using instant APIs, auth, and storage over Postgres.</p>
+                        <button class="modern-btn">View Projects</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-skill-card" data-skill="mysql">
+                <div class="skill-card-inner">
+                    <div class="skill-icon-container">
+                        <i class="fas fa-database skill-icon"></i>
+                        <div class="skill-glow"></div>
+                    </div>
+                    <div class="skill-content">
+                        <h3 class="skill-title">MySQL</h3>
+                        <p class="skill-level">Intermediate</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="60"></div>
+                            <span class="progress-text">60%</span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Joins</span>
+                            <span class="tag">Schemas</span>
+                        </div>
+                    </div>
+                    <div class="skill-details">
+                        <p>Designing normalized tables, writing queries, and data relations.</p>
                         <button class="modern-btn">View Projects</button>
                     </div>
                 </div>
