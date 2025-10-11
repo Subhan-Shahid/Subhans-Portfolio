@@ -912,6 +912,60 @@ html[data-theme="light"] .skills-floating-icon{ opacity: .14; }
             }
         }
 
+        /* Resume CTA Section */
+        .resume-cta { padding: 2rem 1rem; }
+        .resume-card{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 1.25rem 1.5rem;
+            backdrop-filter: blur(14px);
+        }
+        html[data-theme="light"] .resume-card{ background: #ffffff; border-color: #cbd5e1; }
+        .resume-text h2{ margin: 0 0 .25rem; color: var(--text); font-weight: 800; }
+        .resume-text p{ margin: 0; color: var(--text-muted); }
+        .resume-actions{ display: flex; gap: .75rem; flex-wrap: wrap; }
+        .resume-btn{
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .7rem 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+            color: var(--text);
+        }
+        .resume-btn.primary{ background: linear-gradient(45deg, var(--accent), var(--accent-2)); color: #fff; }
+        .resume-btn.secondary{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); }
+        @media (hover: hover) and (pointer: fine){
+            .resume-btn:hover{ transform: translateY(-2px); }
+        }
+        @media (max-width: 768px){
+            .resume-card{ flex-direction: column; align-items: stretch; text-align: center; }
+            .resume-actions{ width: 100%; }
+            .resume-btn{ flex: 1; justify-content: center; min-height: 44px; width: 100%; }
+        }
+
+        /* Extra-small devices: ensure no overflow and optimal tap targets */
+        @media (max-width: 576px) {
+            .projects-sec { padding: 1.5rem 0.75rem; }
+            .projects-grid { gap: 1.25rem; padding: 0 0.5rem; }
+            .project-card-inner { padding: 1rem; }
+            .project-title { font-size: 1.15rem; }
+            .project-description { font-size: 0.9rem; }
+            .project-actions { width: 100%; }
+            .project-btn { width: 100%; min-height: 44px; font-size: 0.9rem; }
+            .tech-tag { font-size: 0.7rem; padding: 0.2rem 0.5rem; }
+            /* Disable hover overlays on touch-small screens to keep actions accessible */
+            .project-overlay { display: none; }
+        }
+
         /* Modern Project Cards */
         .modern-project-card {
             position: relative;
@@ -1413,6 +1467,8 @@ html[data-theme="light"] .skills-floating-icon{ opacity: .14; }
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
         }
 
         .project-btn {
@@ -1442,17 +1498,17 @@ html[data-theme="light"] .skills-floating-icon{ opacity: .14; }
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .project-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .project-btn.primary:hover {
-            box-shadow: 0 8px 20px rgba(0,210,255,0.3);
-        }
-
-        .project-btn.secondary:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.3);
+        @media (hover: hover) and (pointer: fine) {
+            .project-btn:hover {
+                transform: translateY(-2px);
+            }
+            .project-btn.primary:hover {
+                box-shadow: 0 8px 20px rgba(0,210,255,0.3);
+            }
+            .project-btn.secondary:hover {
+                background: rgba(255,255,255,0.15);
+                border-color: rgba(255,255,255,0.3);
+            }
         }
 
         /* Project Overlay - Only covers content area, not buttons */
@@ -1473,9 +1529,11 @@ html[data-theme="light"] .skills-floating-icon{ opacity: .14; }
             padding: 2rem;
         }
 
-        .modern-project-card:hover .project-overlay {
-            opacity: 1;
-            visibility: visible;
+        @media (hover: hover) and (pointer: fine) {
+            .modern-project-card:hover .project-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
         }
 
         .overlay-content {
@@ -1522,10 +1580,10 @@ html[data-theme="light"] .skills-floating-icon{ opacity: .14; }
         }
 
         /* Individual Project Colors */
-        .modern-project-card[data-project="skillhub"] .project-icon {
+        .modern-project-card[data-project="dev-ora"] .project-icon {
             color: #ffd166;
         }
-        .modern-project-card[data-project="skillhub"] .project-glow {
+        .modern-project-card[data-project="dev-ora"] .project-glow {
             background: radial-gradient(circle, rgba(255,209,102,0.4), transparent);
         }
 
