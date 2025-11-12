@@ -225,7 +225,7 @@ function setupRevealAnimations(){
             // Fallback: ensure element becomes visible even without anime.js
             el.classList.add('visible');
             el.style.opacity = '1';
-            el.style.transform = 'none';
+            el.style.transform = '';
             // Animate progress bars even without anime.js
             animateProgressBar(el);
             return;
@@ -240,6 +240,10 @@ function setupRevealAnimations(){
             complete: () => {
                 // Animate progress bar after card animation
                 animateProgressBar(el);
+                // Clear inline transform styles to allow CSS hover to work properly
+                if (el.classList.contains('modern-skill-card')) {
+                    el.style.transform = '';
+                }
             }
         });
     };
@@ -263,19 +267,92 @@ function setupRevealAnimations(){
         });
     }, { threshold: 0.25 });
 
-    document.querySelectorAll('.skill-card, .modern-skill-card, .projects-card, .modern-project-card, .contact-card').forEach(el => {
+    document.querySelectorAll('.skill-card, .modern-skill-card, .projects-card, .modern-project-card, .contact-card, .experience-card').forEach(el => {
         // set initial state to ensure visible effect
         if (!prefersReduced){
             el.style.opacity = '0';
             el.style.transform = 'translateY(16px)';
         }
         observer.observe(el);
+        
+        // Ensure hover states are not affected by animations
+        if (el.classList.contains('modern-skill-card')) {
+            el.addEventListener('animationend', () => {
+                el.style.transform = '';
+                el.style.transition = '';
+            });
+            
+            // Also clear any persistent inline styles after a delay
+            setTimeout(() => {
+                if (el.style.transform && !el.matches(':hover')) {
+                    el.style.transform = '';
+                    el.style.transition = '';
+                }
+            }, 1000);
+        }
+    });
+}
+
+// Experience timeline animations
+function setupExperienceAnimations(){
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (timelineItems.length === 0) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+                
+                // Add staggered animation to tech badges
+                const techBadges = entry.target.querySelectorAll('.tech-badge');
+                techBadges.forEach((badge, index) => {
+                    setTimeout(() => {
+                        badge.style.transform = 'translateY(0)';
+                        badge.style.opacity = '1';
+                    }, index * 100);
+                });
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    // Set initial state for tech badges
+    timelineItems.forEach(item => {
+        const techBadges = item.querySelectorAll('.tech-badge');
+        techBadges.forEach(badge => {
+            if (!prefersReduced) {
+                badge.style.transform = 'translateY(10px)';
+                badge.style.opacity = '0';
+                badge.style.transition = 'all 0.3s ease';
+            }
+        });
+        observer.observe(item);
+    });
+
+    // Add hover effects for timeline icons
+    const timelineIcons = document.querySelectorAll('.timeline-icon');
+    timelineIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            if (!prefersReduced) {
+                icon.style.transform = 'scale(1.1)';
+            }
+        });
+        
+        icon.addEventListener('mouseleave', () => {
+            if (!prefersReduced) {
+                icon.style.transform = 'scale(1)';
+            }
+        });
     });
 }
 
 // Active nav highlighting based on section visibility
 function setupActiveNavObserver(){
-    const sectionIds = ['home','about','skills','project-sec','contact-sec'];
+    const sectionIds = ['home','about','skills','experience','project-sec','contact-sec'];
     const links = Array.from(document.querySelectorAll('#navbar .nav-link'));
     const linkMap = new Map();
     links.forEach(a => {
@@ -364,6 +441,7 @@ function init(){
 
     animeInit();
     setupRevealAnimations();
+    setupExperienceAnimations();
 
     // Initialize AOS animations after page load (moved from inline script)
     if (typeof window.AOS !== 'undefined'){
