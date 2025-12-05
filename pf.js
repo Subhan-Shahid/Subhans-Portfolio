@@ -515,3 +515,30 @@ function setupThemeToggle(){
         });
     }
 }
+
+// Toggle Read More/Less for About section
+function toggleReadMore() {
+    const fullText = document.getElementById('aboutFullText');
+    const btn = document.getElementById('readMoreBtn');
+    const btnText = document.getElementById('readMoreText');
+    const btnIcon = document.getElementById('readMoreIcon');
+    
+    if (!fullText || !btn) return;
+    
+    const isExpanded = fullText.classList.contains('expanded');
+    
+    if (isExpanded) {
+        fullText.classList.remove('expanded');
+        btn.classList.remove('expanded');
+        btnText.textContent = 'Read More';
+        btnIcon.classList.remove('fa-chevron-up');
+        btnIcon.classList.add('fa-chevron-down');
+    } else {
+        fullText.classList.add('expanded');
+        btn.classList.add('expanded');
+        btnText.textContent = 'Read Less';
+        btnIcon.classList.remove('fa-chevron-down');
+        btnIcon.classList.add('fa-chevron-up');
+    }
+}
+
